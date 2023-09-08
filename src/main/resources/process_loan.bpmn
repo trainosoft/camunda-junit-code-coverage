@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_00ceflo" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.8.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <bpmn:process id="process_loan" name="Process example" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_06ynmkb</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_06ynmkb" sourceRef="StartEvent_1" targetRef="task_cibil_score" />
+    <bpmn:userTask id="task_cibil_score" name="CIBIL Score" camunda:assignee="demo">
+      <bpmn:documentation>It is one of the most important factor that affects your loan approval. A good credit score and report is a positive indicator of your credit health.</bpmn:documentation>
+      <bpmn:incoming>Flow_06ynmkb</bpmn:incoming>
+      <bpmn:outgoing>Flow_13ze4yl</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="task_employment_status" name="Employment Status" camunda:assignee="demo">
+      <bpmn:documentation>Apart from a good credit history, lenders also check for your steady income and employment status.</bpmn:documentation>
+      <bpmn:incoming>Flow_13ze4yl</bpmn:incoming>
+      <bpmn:outgoing>Flow_0y53qh5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0y53qh5" sourceRef="task_employment_status" targetRef="Event_0cfyk5z" />
+    <bpmn:sequenceFlow id="Flow_13ze4yl" sourceRef="task_cibil_score" targetRef="task_employment_status" />
+    <bpmn:endEvent id="Event_0cfyk5z" name="Loan Approved">
+      <bpmn:incoming>Flow_0y53qh5</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="process_loan">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_182nbvl_di" bpmnElement="task_cibil_score">
+        <dc:Bounds x="250" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13lpr5f_di" bpmnElement="task_employment_status">
+        <dc:Bounds x="420" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0cfyk5z_di" bpmnElement="Event_0cfyk5z">
+        <dc:Bounds x="592" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="574" y="145" width="75" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_06ynmkb_di" bpmnElement="Flow_06ynmkb">
+        <di:waypoint x="188" y="120" />
+        <di:waypoint x="250" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0y53qh5_di" bpmnElement="Flow_0y53qh5">
+        <di:waypoint x="520" y="120" />
+        <di:waypoint x="592" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13ze4yl_di" bpmnElement="Flow_13ze4yl">
+        <di:waypoint x="350" y="120" />
+        <di:waypoint x="420" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
